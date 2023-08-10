@@ -25,6 +25,8 @@
   "bugs": {
     "url": "https://github.com/lirantal/trigger.dev-express-example-vanilla/issues"
   },
-  "homepage": "https://github.com/lirantal/trigger.dev-express-example-vanilla"
-
+  "homepage": "https://github.com/lirantal/trigger.dev-express-example-vanilla",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
