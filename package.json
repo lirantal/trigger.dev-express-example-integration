@@ -1,0 +1,30 @@
+{
+  "name": "trigger.dev-express-example-vanilla",
+  "version": "1.0.0",
+  "description": "Example Express application for trigger.dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trigger.dev",
+    "@trigger.dev",
+    "trigger",
+    "express",
+    "openai"
+  ],
+  "author": {
+    "name": "Liran Tal",
+    "email": "liran@lirantal.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lirantal/trigger.dev-express-example-vanilla.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lirantal/trigger.dev-express-example-vanilla/issues"
+  },
+  "homepage": "https://github.com/lirantal/trigger.dev-express-example-vanilla"
+
+}
