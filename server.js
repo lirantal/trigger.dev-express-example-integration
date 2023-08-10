@@ -14,6 +14,24 @@ const client = new TriggerClient({
   apiKey: process.env.TRIGGER_API_KEY,
 });
 
+// Defines a new background job
+client.defineJob({
+  // 1. Job Metadata
+  id: "express-title-generator",
+  name: "Express Title Generator",
+  version: "1.0.0",
+  // 2. Trigger is defined as a custom code-triggered event
+  trigger: eventTrigger({
+    name: "title.generate",
+  }),
+  // 3. The Run function which is called when the job is triggered
+  run: async (payload, io) => {
+    // This simple run just logs the payload and returns it
+    await io.logger.info("Hello world!", { payload });
+    return payload;
+  },
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
