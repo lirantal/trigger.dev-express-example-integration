@@ -3,6 +3,8 @@ const express = require("express");
 const { TriggerClient, eventTrigger } = require("@trigger.dev/sdk");
 const { OpenAI } = require("@trigger.dev/openai");
 
+let titleGeneratedText = null;
+
 dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
@@ -102,6 +104,10 @@ app.post("/api/trigger", async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({ error: "Internal server error" });
   }
+});
+
+app.get("/api/titles", async (req, res, next) => {
+  return res.json({ title: titleGeneratedText });
 });
 
 app.listen(port, () => {
