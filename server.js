@@ -33,6 +33,9 @@ client.defineJob({
   trigger: eventTrigger({
     name: "title.generate",
   }),
+  integrations: {
+    openai,
+  },
   // 3. The Run function which is called when the job is triggered
   run: async (payload, io) => {
     // This simple run just logs the payload and returns it
