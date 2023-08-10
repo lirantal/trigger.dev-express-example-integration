@@ -110,6 +110,15 @@ app.get("/api/titles", async (req, res, next) => {
   return res.json({ title: titleGeneratedText });
 });
 
+app.post("/api/titles", async (req, res, next) => {
+  await client.sendEvent({
+    name: "title.generate",
+    payload: { talkDescriptionText: req.body.talkDescriptionText },
+  });
+
+  return res.json({ message: "new job added to queue" });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
