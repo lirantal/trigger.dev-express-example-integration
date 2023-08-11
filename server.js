@@ -78,7 +78,7 @@ app.post("/api/trigger", async (req, res, next) => {
     // Prepare the request to be a fetch-compatible Request object:
     const requestHeaders = req.headers;
     const requestMethod = req.method;
-    const responseHeaders = {};
+    const responseHeaders = Object.create(null);
 
     for (const [headerName, headerValue] of Object.entries(requestHeaders)) {
       responseHeaders[headerName] = headerValue;
@@ -90,7 +90,8 @@ app.post("/api/trigger", async (req, res, next) => {
     const request = new Request("https://express.js/api/trigger", {
       headers: responseHeaders,
       method: requestMethod,
-      body: req.body ? JSON.stringify(req.body) : JSON.stringify({}),
+      body: req.body ? JSON.stringify(req.body) : req,
+      duplex: "half",
     });
 
     // This handshake handler knows how to authenticate requests,
