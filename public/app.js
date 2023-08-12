@@ -5,7 +5,17 @@
  * @returns
  */
 function isTalkDescriptionValid(talkDescriptionText) {
-  return talkDescriptionText && talkDescriptionText.length > 30;
+  return talkDescriptionText && talkDescriptionText.length >= 120;
+}
+
+function setTalkDescriptionError(showError) {
+  if (showError) {
+    const errorElement = document.getElementById("btnGenerateTitleError");
+    errorElement.style.visibility = "visible";
+  } else {
+    const errorElement = document.getElementById("btnGenerateTitleError");
+    errorElement.style.visibility = "hidden";
+  }
 }
 
 /**
@@ -47,6 +57,8 @@ function setReady(generatedTitleText) {
 
   const btnGenerateTitle = document.getElementById("btnGenerateTitle");
   btnGenerateTitle.disabled = false;
+
+  setTalkDescriptionError(false);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,6 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isTalkDescriptionValid(talkDescriptionText)) {
       generateTitle(talkDescriptionText);
+    } else {
+      setTalkDescriptionError(true);
     }
   });
 });

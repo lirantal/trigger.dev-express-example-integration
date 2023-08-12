@@ -1,3 +1,7 @@
 #results {
     visibility: hidden;
 }
+
+#btnGenerateTitleError {
+    visibility: hidden;
+}
