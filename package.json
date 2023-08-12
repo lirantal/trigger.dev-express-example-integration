@@ -4,6 +4,8 @@
   "description": "Example Express application for trigger.dev",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "trigger:dev": "npx @trigger.dev/cli@latest dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
