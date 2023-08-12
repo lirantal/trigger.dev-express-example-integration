@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const { TriggerClient, eventTrigger } = require("@trigger.dev/sdk");
+const { createMiddleware } = require("@trigger.dev/express");
 const { OpenAI } = require("@trigger.dev/openai");
 
 let titleGeneratedText = null;
@@ -13,9 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Instantiate the Trigger.dev client
 const client = new TriggerClient({
-  id: "trigger-express-example-vanilla",
+  id: "trigger-express-example-integration",
   apiKey: process.env.TRIGGER_API_KEY,
 });
+
+app.use(createMiddleware(client));
 
 // Instantiate the OpenAI integration for Trigger.dev
 const openai = new OpenAI({
@@ -62,52 +65,6 @@ client.defineJob({
 
     return { titleGeneratedText };
   },
-});
-
-// Defines the /api/trigger endpoint which Trigger.dev
-// requires to be able to interact and exchange job data
-// with this Node.js server, such as:
-// 1. Register jobs that we defined above with client.defineJob()
-// 2. Trigger jobs when a new event is received
-app.post("/api/trigger", async (req, res, next) => {
-  if (req.method === "HEAD") {
-    return res.sendStatus(200);
-  }
-
-  try {
-    // Prepare the request to be a fetch-compatible Request object:
-    const requestHeaders = req.headers;
-    const requestMethod = req.method;
-    const responseHeaders = Object.create(null);
-
-    for (const [headerName, headerValue] of Object.entries(requestHeaders)) {
-      responseHeaders[headerName] = headerValue;
-    }
-
-    // Create a new Request object to be passed to the TriggerClient
-    // where we pass the clone the incoming request metadata such as
-    // headers, method, body.
-    const request = new Request("https://express.js/api/trigger", {
-      headers: responseHeaders,
-      method: requestMethod,
-      body: req.body ? JSON.stringify(req.body) : req,
-      duplex: "half",
-    });
-
-    // This handshake handler knows how to authenticate requests,
-    // call the run() function of the job, and so on
-    const response = await client.handleRequest(request);
-
-    if (!response) {
-      return res.status(404).json({ error: "Not found" });
-    }
-
-    // Optionally can do something with the job's finished
-    // execution's response body
-    return res.status(response.status).json(response.body);
-  } catch (err) {
-    return res.status(500).json({ error: "Internal server error" });
-  }
 });
 
 app.get("/api/titles", async (req, res, next) => {

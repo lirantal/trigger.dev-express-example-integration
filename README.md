@@ -1,8 +1,6 @@
-# Trigger.dev Express Example (vanilla)
+# Trigger.dev Express example
 
 This project contains an example of how to use [Trigger.dev](https://trigger.dev) with an Express application and provides the server endpoints, a UI for interaction, and a simple OpenAI integration.
-
-> Specifically, this project is nicknamed "vanilla" because it only uses the Trigger.dev SDK and no other integrations to demonstrate the workflow and processes of how to build a Trigger.dev integration.
 
 ![Trigger.dev Express example job](screenshot.png)
 
@@ -23,7 +21,7 @@ Clone this repository:
 
 ```bash
 git clone
-cd triggerdev-express-example-vanilla
+cd trigger.dev-express-example-integration
 ```
 
 ### Step 2: Set up project dependencies
