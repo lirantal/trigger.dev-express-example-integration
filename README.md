@@ -4,6 +4,8 @@ This project contains an example of how to use [Trigger.dev](https://trigger.dev
 
 > Specifically, this project is nicknamed "vanilla" because it only uses the Trigger.dev SDK and no other integrations to demonstrate the workflow and processes of how to build a Trigger.dev integration.
 
+![Trigger.dev Express example job](screenshot.png)
+
 ## Getting Started
 
 To get started, you'll need to have a Trigger.dev account and a Trigger.dev project. You can sign up for a free account at [https://trigger.dev](https://trigger.dev). Once you have an account, you'll need to create a project. You can do this by clicking the "Create Project" button on the [projects page](https://app.trigger.dev/projects).
