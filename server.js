@@ -123,6 +123,8 @@ app.post("/api/titles", async (req, res, next) => {
   return res.json({ message: "new job added to queue" });
 });
 
+app.use(express.static("public"));
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
